@@ -1,0 +1,55 @@
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        answer = mergeSort(strs)
+        if answer == "":
+            return ""
+        else:
+            answer = answer[0]
+        return answer
+
+
+def mergeSort(list1):
+    size = len(list1)
+    if size <= 1: return list1
+
+    mid = len(list1) // 2
+    left = mergeSort(list1[:mid])
+    right = mergeSort(list1[mid:])
+    merged = merge(left, right)
+
+    return merged
+
+
+def merge(list1, list2):
+    list3 = ""
+    list4 = []
+    if type(list1) == list:
+        list1 = list1[0]
+    if type(list2) == list:
+        list2 = list2[0]
+    if list1 == "" or list2 == "":
+        return ""
+
+    for i in list1:
+        if i != list2[0]:
+            list4.append(list3)
+            return list4
+        else:
+            list3 += i
+
+            list2 = list2[1:]
+            if list2 == "":
+                list4.append(list3)
+                return list4
+
+    list4.append(list3)
+    return list4
+
+
+
+
+
+
+
+
